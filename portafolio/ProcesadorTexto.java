@@ -36,43 +36,29 @@ class LaminaProcesador extends JPanel{
 		JPanel laminamenu=new JPanel();
 		JMenuBar mibarra=new JMenuBar();
 		//--------------------------------
-		JMenu fuente=new JMenu("Fuente");
-		JMenu estilo=new JMenu("Estilo");
-		JMenu tamaño=new JMenu("Tamaño");		
-		//--------------------------------
-		JMenuItem arial=new JMenuItem("Arial");
+		 fuente=new JMenu("Fuente");
+		 estilo=new JMenu("Estilo");
+		 tamaño=new JMenu("Tamaño");		
+		//---------------------------------------//
+		configuraMenu("Arial", "fuente", "Arial", 9,10);
+		configuraMenu("Courier", "fuente", "Courier", 9,10);
+		configuraMenu("Verdana", "fuente", "Verdana", 9,10);
+		//-----------------------------------------//
+		configuraMenu("Negrita", "estilo", "",Font.BOLD,10);
+		configuraMenu("Cursiva", "estilo", "",Font.ITALIC,10);
+		//-----------------------------------------//
+		configuraMenu("12", "tamaño", "", 9,12);
+		configuraMenu("16", "tamaño", "", 9,16);
+		configuraMenu("20", "tamaño", "", 9,20);
+		configuraMenu("24", "tamaño", "", 9,24);
+		//-----------------------------------//
 		
-		JMenuItem courier=new JMenuItem("Courier");
-		
-		courier.addActionListener(new gestionaMenus());
-		JMenuItem verdana=new JMenuItem("Verdana");
-		
-		fuente.add(arial);
-		fuente.add(courier);
-		fuente.add(verdana);
-		//------------------------------------
-		JMenuItem negrita=new JMenuItem("Negrita");
-		
-		JMenuItem cursiva=new JMenuItem("Cursiva");
-		
-		estilo.add(negrita);
-		estilo.add(cursiva);
-		//--------------------------------------
-		JMenuItem tam12=new JMenuItem("12");
-		JMenuItem tam16=new JMenuItem("16");
-		JMenuItem tam20=new JMenuItem("20");
-		JMenuItem tam24=new JMenuItem("24");
-		
-		tamaño.add(tam12);
-		tamaño.add(tam16);
-		tamaño.add(tam20);
-		tamaño.add(tam24);
-		//--------------------------------------
-		mibarra.add(fuente);			
+		mibarra.add(fuente);
 		mibarra.add(estilo);
 		mibarra.add(tamaño);
-		
 		laminamenu.add(mibarra);
+		
+		
 		
 		add(laminamenu,BorderLayout.NORTH);
 		
@@ -82,18 +68,63 @@ class LaminaProcesador extends JPanel{
 		
 		
 	}
-	
-	private class gestionaMenus implements ActionListener{
-
+	public void configuraMenu(String rotulo, String menu, String tipoLetra, int estilos, int tam){
+		//metodo
+		JMenuItem elemMenu=new JMenuItem(rotulo);
 		
-		public void actionPerformed(ActionEvent e) {
+		if(menu=="fuente"){
+			fuente.add(elemMenu);
 			
-			miarea.setFont(new Font("Courier", Font.PLAIN, 12));
+		}else if(menu=="estilo"){
+			estilo.add(elemMenu);
+		}else if(menu=="tamaño"){
+			tamaño.add(elemMenu);
+		}
+		elemMenu.addActionListener(new GestionaEventos(rotulo,tipoLetra, estilos, tam));
+	}
+		private class GestionaEventos implements ActionListener{
+		String tipoTexto, menu;
+		
+		GestionaEventos(String elemento, String texto2, int estilo2, int tamLetra){
+			tipoTexto=texto2;
+			estiloLetra=estilo2;
+			tamañoLetra=tamLetra;
+			menu=elemento;
 		}
 		
-	}
+		int estiloLetra, tamañoLetra;
+			
+			public void actionPerformed(ActionEvent e) {
+				 
+				letra=miarea.getFont();
+				
+				if(menu=="Arial" || menu=="Courier" || menu=="Verdana"){
+					estiloLetra=letra.getStyle();
+					
+					tamañoLetra=letra.getSize();
+				}else if(menu=="Cursiva" || menu=="Negrita"){
+					tipoTexto=letra.getFontName();
+					tamañoLetra=letra.getSize();
+				}else if(menu=="12" || menu=="16" || menu=="20" || menu=="24"){
+					estiloLetra=letra.getStyle();
+					tipoTexto=letra.getFontName();
+				}
+				
+				miarea.setFont(new Font(tipoTexto, estiloLetra, tamañoLetra));
+				
+			}
+			
+		}
+	
+	
+	
+	
 	
 	JTextPane miarea;
+	JMenu fuente,estilo, tamaño;
+	Font letra;
+	
+	
 }
 
 

@@ -14,7 +14,7 @@ public class EventosTeclado {
 		
 		
 	}
-
+//-----------------------------------
 }
 
 class MarcoConTeclas extends JFrame{
