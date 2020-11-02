@@ -22,6 +22,8 @@ public class PruebaAcciones {
 		
 		MarcoAccion mimarco=new MarcoAccion();
 		
+		mimarco.setVisible(true);
+		
 		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
@@ -32,7 +34,7 @@ class MarcoAccion extends JFrame{
 	
 	public MarcoAccion(){
 		
-		setVisible(true);
+		
 		
 		setBounds(250, 110, 600, 300);
 		
@@ -49,11 +51,11 @@ class PanelAccion extends JPanel{
 	
 	public PanelAccion(){
 		
-		AccionColor accionAmari=new AccionColor("Amarillo", new ImageIcon("src/graficos/bolaAmarillo.gif"), Color.YELLOW );
+		AccionColor accionAmari=new AccionColor("Amarillo", new ImageIcon("src/graficos/imagenes/bolaAmarillo.gif"), Color.YELLOW );
 		
-		AccionColor accionAzul=new AccionColor("Azul", new ImageIcon("src/graficos/bolaAzul.gif"), Color.BLUE);
+		AccionColor accionAzul=new AccionColor("Azul", new ImageIcon("src/graficos/imagenes/bolaAzul.gif"), Color.BLUE);
 		
-		AccionColor accionRojo=new AccionColor("Rojo", new ImageIcon("src/graficos/bolaRoja.gif"), Color.RED);
+		AccionColor accionRojo=new AccionColor("Rojo", new ImageIcon("src/graficos/imagenes/bolaRoja.gif"), Color.RED);
 		
 		add(new JButton(accionAmari));
 		
