@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 public class ProcesadorTexto {
-
+//======Procesador de texto=========//
 	public static void main(String[] args) {
 		
 		MenuProcesador mimarco=new MenuProcesador();
