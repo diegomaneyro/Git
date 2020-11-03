@@ -44,26 +44,13 @@ class LaminaProcesador extends JPanel{
 		 estilo=new JMenu("Estilo");
 		 tamaño=new JMenu("Tamaño");		
 		//---------------------------------------//
-		configuraMenu("Arial", "fuente", "Arial", 9,10);
-		configuraMenu("Courier", "fuente", "Courier", 9,10);
-		configuraMenu("Verdana", "fuente", "Verdana", 9,10);
-		//-----------------------------------------//
+		configuraMenu("Arial","fuente","Arial",9,10);
+		configuraMenu("Courier","fuente","Courier",9,10);
+		configuraMenu("Verdana","fuente","Verdana",9,10);
+		//-----------------------------------------//i
 		configuraMenu("Negrita", "estilo", "",Font.BOLD,10);
 		configuraMenu("Cursiva", "estilo", "",Font.ITALIC,10);
-		/*JCheckBoxMenuItem negrita=new JCheckBoxMenuItem("Negrita"); 
-		JCheckBoxMenuItem cursiva=new JCheckBoxMenuItem("Cursiva");
 		
-		negrita.addActionListener(new StyledEditorKit.BoldAction());
-		cursiva.addActionListener(new StyledEditorKit.ItalicAction());
-		
-		estilo.add(negrita);
-		estilo.add(cursiva);*/
-		//-----------------------------------------//
-		/*configuraMenu("12", "tamaño", "", 9,12);
-		configuraMenu("16", "tamaño", "", 9,16);
-		configuraMenu("20", "tamaño", "", 9,20);
-		configuraMenu("24", "tamaño", "", 9,24);
-		*/
 		ButtonGroup tamaño_letra=new ButtonGroup();
 		JRadioButtonMenuItem doce=new JRadioButtonMenuItem("12");
 		JRadioButtonMenuItem dieciseis=new JRadioButtonMenuItem("16");
@@ -119,53 +106,34 @@ class LaminaProcesador extends JPanel{
 		
 		miarea.setComponentPopupMenu(emergente);
 		//============================================================================================
-		JToolBar barra=new JToolBar();
+		
+		barra=new JToolBar();
+		configura_barra("src/graficos/imagenes/Negrita.Gif").addActionListener(new StyledEditorKit.BoldAction());
+		configura_barra("src/graficos/imagenes/Cursiva.Gif").addActionListener(new StyledEditorKit.ItalicAction());
+		configura_barra("src/graficos/imagenes/Subrayado.Gif").addActionListener(new StyledEditorKit.UnderlineAction());
+		barra.addSeparator();
+		configura_barra("src/graficos/imagenes/rojoBarra.Gif").addActionListener(new StyledEditorKit.ForegroundAction("Pone_rojo", Color.RED));
+		configura_barra("src/graficos/imagenes/azulBarra.Gif").addActionListener(new StyledEditorKit.ForegroundAction("Pone_azul", Color.BLUE));
+		configura_barra("src/graficos/imagenes/amarilloBarra.Gif").addActionListener(new StyledEditorKit.ForegroundAction("Pone_amarillo", Color.YELLOW));
+		barra.addSeparator();
+		configura_barra("src/graficos/imagenes/izquierdaBarra.Gif").addActionListener(new StyledEditorKit.AlignmentAction("izquierda", 0));
+		configura_barra("src/graficos/imagenes/derechaBarra.Gif").addActionListener(new StyledEditorKit.AlignmentAction("derecha", 2));
+		configura_barra("src/graficos/imagenes/centradoBarra.Gif").addActionListener(new StyledEditorKit.AlignmentAction("centrado", 1));
+		configura_barra("src/graficos/imagenes/justificadoBarra.Gif").addActionListener(new StyledEditorKit.AlignmentAction("justificado", 3));
+		
 		barra.setOrientation(1);//orienta la barra de herramientas
-
-		JButton negritaBarra=new JButton(new ImageIcon("src/graficos/imagenes/Negrita.Gif"));
-		JButton cursivaBarra=new JButton(new ImageIcon("src/graficos/imagenes/Cursiva.Gif"));
-		JButton subraBarra=new JButton(new ImageIcon("src/graficos/imagenes/Subrayado.Gif"));
-		
-		JButton rojoBarra=new JButton(new ImageIcon("src/graficos/imagenes/rojoBarra.Gif"));
-		JButton azulBarra=new JButton(new ImageIcon("src/graficos/imagenes/azulBarra.Gif"));
-		JButton amarilloBarra=new JButton(new ImageIcon("src/graficos/imagenes/amarilloBarra.Gif"));
-		//===============================================================================//
-		JButton derechaBarra=new JButton(new ImageIcon("src/graficos/imagenes/derechaBarra.Gif"));
-		JButton centradoBarra=new JButton(new ImageIcon("src/graficos/imagenes/centradoBarra.Gif"));
-		JButton justificadoBarra=new JButton(new ImageIcon("src/graficos/imagenes/justificadoBarra.Gif"));
-		JButton izquierdaBarra=new JButton(new ImageIcon("src/graficos/imagenes/izquierdaBarra.Gif"));
-		//=============================================================================//
-		
-		negritaBarra.addActionListener(new StyledEditorKit.BoldAction());//pone en escuha al clic y lo poinbe en negrita
-		cursivaBarra.addActionListener(new StyledEditorKit.ItalicAction());
-		subraBarra.addActionListener(new StyledEditorKit.UnderlineAction());
-		rojoBarra.addActionListener(new StyledEditorKit.ForegroundAction("Pone_azul", Color.RED));
-		azulBarra.addActionListener(new StyledEditorKit.ForegroundAction("Pone_azul", Color.BLUE));
-		amarilloBarra.addActionListener(new StyledEditorKit.ForegroundAction("Pone_amarillo", Color.YELLOW));
-		
-		izquierdaBarra.addActionListener(new StyledEditorKit.AlignmentAction("izquierda", 0));
-		centradoBarra.addActionListener(new StyledEditorKit.AlignmentAction("centrado", 1));
-		derechaBarra.addActionListener(new StyledEditorKit.AlignmentAction("derecha", 2));
-		justificadoBarra.addActionListener(new StyledEditorKit.AlignmentAction("derecha", 3));
-		
-		barra.add(negritaBarra);
-		barra.add(cursivaBarra);
-		barra.add(subraBarra);
-		barra.add(rojoBarra);
-		barra.add(azulBarra);
-		barra.add(amarilloBarra);
-		
-		barra.add(izquierdaBarra);
-		barra.add(centradoBarra);
-		barra.add(derechaBarra);
-		barra.add(justificadoBarra);
-		
 		add(barra, BorderLayout.WEST);
 		
-		
-		//==========================================================================================//
-		
 	}
+	
+	public JButton configura_barra(String ruta){
+		
+		JButton boton=new JButton(new ImageIcon(ruta));
+		
+		barra.add(boton);
+		return boton;
+	}
+	
 	public void configuraMenu(String rotulo, String menu, String tipoLetra, int estilos, int tam){
 		//metodo
 		JMenuItem elemMenu=new JMenuItem(rotulo);
@@ -176,7 +144,7 @@ class LaminaProcesador extends JPanel{
 				elemMenu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia letra", "Arial"));
 			}else if (tipoLetra=="Courier"){
 				elemMenu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia letra", "Courier"));
-			}else if(tipoLetra == "Verdadada"){
+			}else if(tipoLetra == "Verdana"){
 				elemMenu.addActionListener(new StyledEditorKit.FontFamilyAction("cambia letra", "Verdana"));
 			}
 			
@@ -208,8 +176,8 @@ class LaminaProcesador extends JPanel{
 	JTextPane miarea;
 	JMenu fuente,estilo, tamaño;
 	Font letra;
-	
-	
+	JButton negritaBarra, CursivaBarra, SubraBarra,azulBarra, rojoBarra, amarilloBarra, izquierdaBarra, centradoBarra, derechaBarra, justificadoBarra;
+	JToolBar barra;
 }
 
 
