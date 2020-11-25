@@ -38,12 +38,12 @@ class MarcoConImagen extends JFrame{
 class LaminaConImagen extends JPanel{
 	
 	public LaminaConImagen(){
-		try {
-			imagen=ImageIO.read(new File("src/graficos/bola.gif"));
-		} catch (IOException e) {
+		try {//intenta la siguiente linea de codigoi
+			imagen=ImageIO.read(new File("src/graficos/imagenes/bola.gif"));//la clase file obliga a crear unmetodo try catch
+		} catch (IOException e) {//sino funciona captura el error enun objeto IOException
 			// Exception devuelve un print si no funciona
-			System.out.println("No encuentra la imagen");
-		}
+			System.out.println("ERROR--No se encuentra la imagen");//entonces usa esta otra opcion
+		}	//excepcion comprovada
 	}
 	
 	public void paintComponent(Graphics g){
@@ -51,11 +51,13 @@ class LaminaConImagen extends JPanel{
 		super.paintComponent(g);
 		
 		//File miimagen=new File("src/graficos/auto.png");
+		if(imagen==null){
+			g.drawString("no podemos cargar la imagen", 10, 10);
+		}else{
 		
+		int anchuraimagen=imagen.getWidth(this);//obbtener el alto de la imagen del marco
 		
-		int anchuraimagen=imagen.getWidth(this);
-		
-		int alturaimagen=imagen.getHeight(this);
+		int alturaimagen=imagen.getHeight(this);//obtener elancho de la imagen del marco
 		
 		g.drawImage(imagen, 0, 0, null);
 		
@@ -69,7 +71,7 @@ class LaminaConImagen extends JPanel{
 				
 				}
 			}
-		
+		}
 		}
 	private Image imagen;
 
